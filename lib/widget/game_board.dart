@@ -28,7 +28,7 @@ class _GameBoardState extends State<GameBoard> with SingleTickerProviderStateMix
   void initState() {
     touchCallbacks = TouchCallbacks(
       gameProvider: widget.gameProvider,
-      animate: () {
+      onWinRound: () {
         _controller.reset();
         _controller.animateTo(1, curve: Curves.easeInCubic);
       },
@@ -81,7 +81,7 @@ class _GameBoardState extends State<GameBoard> with SingleTickerProviderStateMix
         //     setState(() => touchCallbacks.touchEnded(TouchData(details.pointer)));
         //   },
         //   onPointerCancel: (details) {
-        //     setState(() => touchCallbacks.touchCanceled(TouchData(details.pointer)));
+        //     setState(() => touchCallbacks.touchEnded(TouchData(details.pointer)));
         //   },
         //   child: Container(color: Colors.transparent),
         // ),
@@ -106,7 +106,7 @@ class _GameBoardState extends State<GameBoard> with SingleTickerProviderStateMix
                       );
                     },
                     onEnd: (details, tId) => setState(() => touchCallbacks.touchEnded(TouchData(tId))),
-                    onCancel: (tId) => setState(() => touchCallbacks.touchCanceled(TouchData(tId))),
+                    onCancel: (tId) => setState(() => touchCallbacks.touchEnded(TouchData(tId))),
                     touchId: _counter,
                   );
                 };
@@ -122,11 +122,11 @@ class _GameBoardState extends State<GameBoard> with SingleTickerProviderStateMix
 class TouchCallbacks {
   TouchCallbacks({
     required this.gameProvider,
-    required this.animate,
+    required this.onWinRound,
   });
 
   final GameProvider gameProvider;
-  final VoidCallback animate;
+  final VoidCallback onWinRound;
 
   List<TouchData> taps = [];
 
@@ -152,23 +152,6 @@ class TouchCallbacks {
     }
   }
 
-  void touchCanceled(TouchData touch) {
-    taps.removeWhere((element) => element.touchId == touch.touchId);
-    if (gameProvider.touchState == TouchState.incrementing) {
-      gameProvider.failGame();
-      if (gameProvider.touchState == TouchState.still && tapCount == 0) {
-        gameProvider.touchState = TouchState.incrementing;
-      }
-    } else if (gameProvider.touchState == TouchState.decrementing) {
-      if (tapCount == 0) {
-        gameProvider.winRound();
-        animate();
-      }
-    } else if (gameProvider.touchState == TouchState.still && tapCount == 0) {
-      gameProvider.touchState = TouchState.incrementing;
-    }
-  }
-
   void touchEnded(TouchData touch) {
     taps.removeWhere((element) => element.touchId == touch.touchId);
     if (gameProvider.touchState == TouchState.incrementing) {
@@ -179,7 +162,7 @@ class TouchCallbacks {
     } else if (gameProvider.touchState == TouchState.decrementing) {
       if (tapCount == 0) {
         gameProvider.winRound();
-        animate();
+        onWinRound();
       }
     } else if (gameProvider.touchState == TouchState.still && tapCount == 0) {
       gameProvider.touchState = TouchState.incrementing;
