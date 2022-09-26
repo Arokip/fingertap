@@ -25,8 +25,9 @@ class GameIsReady extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               const BackButtonAligned(),
-              const Text('TAP TO START', style: TextStyle(fontSize: 24)),
-              const Gap(32),
+              const Gap(80),
+              const Text('TAP TO START', style: TextStyle(fontSize: 40)),
+              const Gap(80),
               Expanded(
                 child: FutureBuilder(
                   future: gameProvider.highScore,
@@ -37,16 +38,16 @@ class GameIsReady extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           if (gameProvider is GameTime20Provider && highScore != null)
-                            Text('Your best score: $highScore', style: const TextStyle(fontSize: 16)),
+                            Text('Your best score: $highScore', style: const TextStyle(fontSize: 18)),
                           if (gameProvider is GameTaps20Provider && highScore != null)
-                            Text('Your best time: ${highScore.toStringAsFixed(2)}s', style: const TextStyle(fontSize: 16)),
+                            Text('Your best time: ${highScore.toStringAsFixed(2)}s', style: const TextStyle(fontSize: 18)),
                           if (gameProvider is GameNoLimitProvider && highScore != null)
-                            Text('Your best score: $highScore', style: const TextStyle(fontSize: 16)),
+                            Text('Your best score: $highScore', style: const TextStyle(fontSize: 18)),
                           if (gameProvider is GameEndlessProvider && highScore != null)
-                            Text('Your current score is: $highScore', style: const TextStyle(fontSize: 16)),
+                            Text('Your current score is: $highScore', style: const TextStyle(fontSize: 18)),
                           if (highScore == null) const Text('You have no high score recorded.'),
                           const Gap(16),
-                          Text('High score to beat: ${gameProvider.totalHighScoreString}', style: const TextStyle(fontSize: 16)),
+                          Text('High score to beat: ${gameProvider.totalHighScoreString}', style: const TextStyle(fontSize: 18)),
                           const Spacer(),
                         ],
                       );

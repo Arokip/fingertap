@@ -28,7 +28,12 @@ class GameEnd extends StatelessWidget {
               return Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  if (gameProvider.gameState == GameState.failed) const Text('Whoops... you made a mistake!'),
+                  if (gameProvider.gameState == GameState.failed)
+                    const Text(
+                      'Whoops... you made a mistake!',
+                      style: TextStyle(fontSize: 20),
+                    ),
+                  const Gap(16),
                   if (gameProvider is GameTime20Provider)
                     Column(
                       children: [
