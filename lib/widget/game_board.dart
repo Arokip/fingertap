@@ -57,7 +57,7 @@ class _GameBoardState extends State<GameBoard> with SingleTickerProviderStateMix
         AnimatedBuilder(
           animation: _controller.view,
           builder: (context, child) {
-            return AppliftingFire(count: gameProvider.previousCount, location: 400 * _controller.value);
+            return AppliftingFire(count: gameProvider.previousCount, location: 600 * _controller.value);
           },
         ),
         AppliftingFire(count: gameProvider.currentCount),
