@@ -9,7 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class GameScreen extends StatelessWidget {
-  const GameScreen({Key? key}) : super(key: key);
+  const GameScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -30,8 +30,8 @@ class GameScreen extends StatelessWidget {
         }
       },
       builder: (context, child) {
-        return WillPopScope(
-          onWillPop: () async => false,
+        return PopScope(
+          onPopInvoked: (_) => false,
           child: SafeArea(
             child: Scaffold(
               backgroundColor: Colors.grey[400]!,

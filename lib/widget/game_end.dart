@@ -10,7 +10,7 @@ import 'package:gap/gap.dart';
 import 'package:provider/provider.dart';
 
 class GameEnd extends StatelessWidget {
-  const GameEnd({Key? key}) : super(key: key);
+  const GameEnd({super.key});
 
   // TODO: rewrite to separate widgets by modes
 
@@ -24,7 +24,7 @@ class GameEnd extends StatelessWidget {
           future: gameProvider.highScore,
           builder: (context, snap) {
             if (snap.connectionState == ConnectionState.done) {
-              final highScore = snap.data as num?;
+              final highScore = snap.data;
               return Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [

@@ -3,10 +3,10 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 class AppliftingFire extends StatelessWidget {
   const AppliftingFire({
-    Key? key,
+    super.key,
     this.location = 0,
     required this.count,
-  }) : super(key: key);
+  });
 
   final double location;
   final int count;

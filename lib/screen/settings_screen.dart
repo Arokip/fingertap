@@ -8,7 +8,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hive/hive.dart';
 
 class SettingsScreen extends StatefulWidget {
-  const SettingsScreen({Key? key}) : super(key: key);
+  const SettingsScreen({super.key});
 
   @override
   State<SettingsScreen> createState() => _SettingsScreenState();
@@ -24,7 +24,14 @@ class _SettingsScreenState extends State<SettingsScreen> {
         body: Stack(
           alignment: Alignment.center,
           children: [
-            SvgPicture.asset('assets/applifting_logo.svg', width: 400, color: Colors.grey[500]),
+            SvgPicture.asset(
+              'assets/applifting_logo.svg',
+              width: 400,
+              colorFilter: ColorFilter.mode(
+                Colors.grey[500]!,
+                BlendMode.color,
+              ),
+            ),
             const BackButtonAligned(light: true),
             Column(
               mainAxisAlignment: MainAxisAlignment.center,

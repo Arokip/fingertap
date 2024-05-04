@@ -4,10 +4,10 @@ import 'package:flutter/material.dart';
 
 class HighScoreList extends StatelessWidget {
   const HighScoreList({
-    Key? key,
+    super.key,
     required this.userName,
     required this.highScore,
-  }) : super(key: key);
+  });
 
   final String userName;
   final List<HighScoreItem> highScore;

@@ -9,7 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class TopBar extends StatefulWidget {
-  const TopBar({Key? key}) : super(key: key);
+  const TopBar({super.key});
 
   @override
   State<TopBar> createState() => _TopBarState();

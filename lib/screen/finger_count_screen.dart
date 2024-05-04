@@ -8,7 +8,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hive/hive.dart';
 
 class FingerCountScreen extends StatefulWidget {
-  const FingerCountScreen({Key? key}) : super(key: key);
+  const FingerCountScreen({super.key});
 
   @override
   State<FingerCountScreen> createState() => _FingerCountScreenState();
@@ -36,7 +36,14 @@ class _FingerCountScreenState extends State<FingerCountScreen> {
         body: Stack(
           alignment: Alignment.center,
           children: [
-            SvgPicture.asset('assets/applifting_logo.svg', width: 400, color: Colors.grey[700]),
+            SvgPicture.asset(
+              'assets/applifting_logo.svg',
+              width: 400,
+              colorFilter: ColorFilter.mode(
+                Colors.grey[700]!,
+                BlendMode.color,
+              ),
+            ),
             const BackButtonAligned(),
             Text('${fingerCount ?? '-'}', style: const TextStyle(color: Colors.white, fontSize: 64)),
             Positioned(
@@ -52,10 +59,11 @@ class _FingerCountScreenState extends State<FingerCountScreen> {
                 fontSize: 28,
               ),
             ),
-            ...touchCallbacks.taps.map((tap) => FingerTouch(dx: tap.offset.dx, dy: tap.offset.dy)).toList(),
+            ...touchCallbacks.taps.map((tap) => FingerTouch(dx: tap.offset.dx, dy: tap.offset.dy)),
             RawGestureDetector(
               gestures: <Type, GestureRecognizerFactory>{
-                ImmediateMultiDragGestureRecognizer: GestureRecognizerFactoryWithHandlers<ImmediateMultiDragGestureRecognizer>(
+                ImmediateMultiDragGestureRecognizer:
+                    GestureRecognizerFactoryWithHandlers<ImmediateMultiDragGestureRecognizer>(
                   ImmediateMultiDragGestureRecognizer.new,
                   (ImmediateMultiDragGestureRecognizer instance) {
                     instance.onStart = (Offset offset) {

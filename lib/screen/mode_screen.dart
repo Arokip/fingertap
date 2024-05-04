@@ -10,7 +10,7 @@ import 'package:hive/hive.dart';
 import 'package:provider/provider.dart';
 
 class ModeScreen extends StatelessWidget {
-  const ModeScreen({Key? key}) : super(key: key);
+  const ModeScreen({super.key});
 
   void startGame(BuildContext context, GameMode mode) {
     Provider.of<GameModeProvider>(context, listen: false).setGameMode(mode);
@@ -26,7 +26,14 @@ class ModeScreen extends StatelessWidget {
         body: Stack(
           alignment: Alignment.center,
           children: [
-            SvgPicture.asset('assets/applifting_logo.svg', width: 400, color: Colors.grey[500]),
+            SvgPicture.asset(
+              'assets/applifting_logo.svg',
+              width: 400,
+              colorFilter: ColorFilter.mode(
+                Colors.grey[500]!,
+                BlendMode.color,
+              ),
+            ),
             const BackButtonAligned(light: true),
             Positioned(
               top: 96,

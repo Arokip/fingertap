@@ -4,10 +4,10 @@ import 'package:gap/gap.dart';
 
 class NumberSelector extends StatefulWidget {
   const NumberSelector({
-    Key? key,
+    super.key,
     required this.selectedNumber,
     this.onChanged,
-  }) : super(key: key);
+  });
 
   final int selectedNumber;
   final Function(int)? onChanged;

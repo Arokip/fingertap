@@ -3,11 +3,11 @@ import 'package:flutter/material.dart';
 
 class ModeSelectorItem extends StatelessWidget {
   const ModeSelectorItem({
-    Key? key,
+    super.key,
     required this.mode,
     this.isSelected = false,
     this.onTap,
-  }) : super(key: key);
+  });
 
   final GameMode mode;
   final bool isSelected;

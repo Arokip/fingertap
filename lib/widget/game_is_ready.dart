@@ -9,7 +9,7 @@ import 'package:gap/gap.dart';
 import 'package:provider/provider.dart';
 
 class GameIsReady extends StatelessWidget {
-  const GameIsReady({Key? key}) : super(key: key);
+  const GameIsReady({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -33,21 +33,27 @@ class GameIsReady extends StatelessWidget {
                   future: gameProvider.highScore,
                   builder: (context, snap) {
                     if (snap.connectionState == ConnectionState.done) {
-                      final highScore = snap.data as num?;
+                      final highScore = snap.data;
                       return Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           if (gameProvider is GameTime20Provider && highScore != null)
                             Text('Your best score: $highScore', style: const TextStyle(fontSize: 18)),
                           if (gameProvider is GameTaps20Provider && highScore != null)
-                            Text('Your best time: ${highScore.toStringAsFixed(2)}s', style: const TextStyle(fontSize: 18)),
+                            Text(
+                              'Your best time: ${highScore.toStringAsFixed(2)}s',
+                              style: const TextStyle(fontSize: 18),
+                            ),
                           if (gameProvider is GameNoLimitProvider && highScore != null)
                             Text('Your best score: $highScore', style: const TextStyle(fontSize: 18)),
                           if (gameProvider is GameEndlessProvider && highScore != null)
                             Text('Your current score is: $highScore', style: const TextStyle(fontSize: 18)),
                           if (highScore == null) const Text('You have no high score recorded.'),
                           const Gap(16),
-                          Text('High score to beat: ${gameProvider.totalHighScoreString}', style: const TextStyle(fontSize: 18)),
+                          Text(
+                            'High score to beat: ${gameProvider.totalHighScoreString}',
+                            style: const TextStyle(fontSize: 18),
+                          ),
                           const Spacer(),
                         ],
                       );

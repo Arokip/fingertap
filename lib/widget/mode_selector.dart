@@ -4,10 +4,10 @@ import 'package:flutter/material.dart';
 
 class ModeSelector extends StatefulWidget {
   const ModeSelector({
-    Key? key,
+    super.key,
     required this.selectedMode,
     this.onChanged,
-  }) : super(key: key);
+  });
 
   final GameMode selectedMode;
   final Function(GameMode)? onChanged;

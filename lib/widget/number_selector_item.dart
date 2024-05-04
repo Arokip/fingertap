@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 
 class NumberSelectorItem extends StatelessWidget {
   const NumberSelectorItem({
-    Key? key,
+    super.key,
     required this.number,
     this.isSelected = false,
     this.onTap,
-  }) : super(key: key);
+  });
 
   final int number;
   final bool isSelected;

@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 
 class MenuButton extends StatelessWidget {
   const MenuButton({
-    Key? key,
+    super.key,
     required this.onPressed,
     required this.text,
     this.fontSize = 20,
-  }) : super(key: key);
+  });
 
   final VoidCallback onPressed;
   final String text;

@@ -10,7 +10,7 @@ import 'package:gap/gap.dart';
 import 'package:hive/hive.dart';
 
 class HighScoreScreen extends StatefulWidget {
-  const HighScoreScreen({Key? key}) : super(key: key);
+  const HighScoreScreen({super.key});
 
   @override
   State<HighScoreScreen> createState() => _HighScoreScreenState();

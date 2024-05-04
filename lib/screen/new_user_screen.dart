@@ -14,9 +14,9 @@ import 'package:hive/hive.dart';
 
 class NewUserScreen extends StatefulWidget {
   const NewUserScreen({
-    Key? key,
+    super.key,
     this.username,
-  }) : super(key: key);
+  });
 
   final String? username;
 
@@ -41,7 +41,14 @@ class _NewUserScreenState extends State<NewUserScreen> {
         body: Stack(
           alignment: Alignment.center,
           children: [
-            SvgPicture.asset('assets/applifting_logo.svg', width: 400, color: Colors.grey[700]),
+            SvgPicture.asset(
+              'assets/applifting_logo.svg',
+              width: 400,
+              colorFilter: ColorFilter.mode(
+                Colors.grey[700]!,
+                BlendMode.color,
+              ),
+            ),
             if (widget.username != null) const BackButtonAligned(),
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -88,7 +95,10 @@ class _NewUserScreenState extends State<NewUserScreen> {
                           );
                           if (timeRegistered == null) docUser.set(user.toJson());
                           if (widget.username == null) {
-                            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const HomeScreen()));
+                            Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(builder: (context) => const HomeScreen()),
+                            );
                           } else {
                             Navigator.pop(context);
                           }
@@ -110,9 +120,9 @@ class _NewUserScreenState extends State<NewUserScreen> {
   Future<String> getDeviceName() async {
     final deviceInfo = DeviceInfoPlugin();
     if (Platform.isAndroid) {
-      return (await deviceInfo.androidInfo).model ?? '';
+      return (await deviceInfo.androidInfo).model;
     } else if (Platform.isIOS) {
-      return (await deviceInfo.iosInfo).utsname.machine ?? '';
+      return (await deviceInfo.iosInfo).utsname.machine;
     }
     return '';
   }

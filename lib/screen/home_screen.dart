@@ -10,7 +10,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 
 class HomeScreen extends StatelessWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+  const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +20,14 @@ class HomeScreen extends StatelessWidget {
         body: Stack(
           alignment: Alignment.center,
           children: [
-            SvgPicture.asset('assets/applifting_logo.svg', width: 400, color: Colors.grey[700]),
+            SvgPicture.asset(
+              'assets/applifting_logo.svg',
+              width: 400,
+              colorFilter: ColorFilter.mode(
+                Colors.grey[700]!,
+                BlendMode.color,
+              ),
+            ),
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -31,11 +38,13 @@ class HomeScreen extends StatelessWidget {
                 ),
                 const Gap(8),
                 MenuButton(
-                  onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => const HighScoreScreen())),
+                  onPressed: () =>
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => const HighScoreScreen())),
                   text: 'high scores',
                 ),
                 MenuButton(
-                  onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => const SettingsScreen())),
+                  onPressed: () =>
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => const SettingsScreen())),
                   text: 'settings',
                 ),
                 const Gap(24),

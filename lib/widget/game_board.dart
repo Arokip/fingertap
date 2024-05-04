@@ -7,9 +7,9 @@ import 'package:provider/provider.dart';
 
 class GameBoard extends StatefulWidget {
   const GameBoard({
-    Key? key,
+    super.key,
     required this.gameProvider,
-  }) : super(key: key);
+  });
 
   final GameProvider gameProvider;
 
@@ -61,7 +61,7 @@ class _GameBoardState extends State<GameBoard> with SingleTickerProviderStateMix
           },
         ),
         AppliftingFire(count: gameProvider.currentCount),
-        ...touchCallbacks.taps.map((tap) => FingerTouch(dx: tap.offset.dx, dy: tap.offset.dy)).toList(),
+        ...touchCallbacks.taps.map((tap) => FingerTouch(dx: tap.offset.dx, dy: tap.offset.dy)),
 
         // LISTENER
         // Listener(
@@ -89,7 +89,8 @@ class _GameBoardState extends State<GameBoard> with SingleTickerProviderStateMix
         // RAW GESTURE RECOGNIZER
         RawGestureDetector(
           gestures: <Type, GestureRecognizerFactory>{
-            ImmediateMultiDragGestureRecognizer: GestureRecognizerFactoryWithHandlers<ImmediateMultiDragGestureRecognizer>(
+            ImmediateMultiDragGestureRecognizer:
+                GestureRecognizerFactoryWithHandlers<ImmediateMultiDragGestureRecognizer>(
               ImmediateMultiDragGestureRecognizer.new,
               (ImmediateMultiDragGestureRecognizer instance) {
                 instance.onStart = (Offset offset) {

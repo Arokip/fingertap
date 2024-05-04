@@ -3,13 +3,13 @@ import 'package:gap/gap.dart';
 
 class HighScoreListItem extends StatelessWidget {
   const HighScoreListItem({
-    Key? key,
+    super.key,
     required this.index,
     this.isMe = false,
     required this.playerName,
     required this.score,
     this.isDouble = false,
-  }) : super(key: key);
+  });
 
   final int index;
   final bool isMe;

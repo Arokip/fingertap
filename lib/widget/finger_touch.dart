@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 
 class FingerTouch extends StatelessWidget {
   const FingerTouch({
-    Key? key,
+    super.key,
     required this.dx,
     required this.dy,
-  }) : super(key: key);
+  });
 
   final double dx;
   final double dy;

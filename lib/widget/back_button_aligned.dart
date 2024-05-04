@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 
 class BackButtonAligned extends StatelessWidget {
   const BackButtonAligned({
-    Key? key,
+    super.key,
     this.light = false,
-  }) : super(key: key);
+  });
 
   final bool light;
 
